@@ -1,14 +1,16 @@
 package br.com.mgoficina.model;
 
+import br.com.mgoficina.enums.Gender;
+
 public abstract class Person {
 	
 	private Integer id;
 	private String name;
 	private String cpf;
 	private int age;
-	private char gender;
+	private Gender gender;
 	
-	public Person(Integer id, String name, String cpf, int age, char gender) {
+	public Person(Integer id, String name, String cpf, int age, Gender gender) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -49,11 +51,11 @@ public abstract class Person {
 		this.age = age;
 	}
 
-	public char getGender() {
+	public Gender getGender() {
 		return gender;
 	}
 
-	public void setGender(char gender) {
+	public void setGender(Gender gender) {
 		this.gender = gender;
 	}
 

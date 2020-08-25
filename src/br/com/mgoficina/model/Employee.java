@@ -3,12 +3,14 @@ package br.com.mgoficina.model;
 import java.security.Provider.Service;
 import java.util.List;
 
+import br.com.mgoficina.enums.Gender;
+
 public class Employee extends Person {
 	
 	private String position;
 	private List<Service> services;
 	
-	public Employee(int id, String name, String cpf, int age, char gender, String position, List<Service> services) {
+	public Employee(int id, String name, String cpf, int age, Gender gender, String position, List<Service> services) {
 		super(id, name, cpf, age, gender);
 		this.position = position;
 		this.services = services;

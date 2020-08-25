@@ -1,15 +1,14 @@
-package br.com.mgoficina.model;
+package br.com.mgoficina.enums;
 
-public enum PaymentMethod {
+public enum Gender {
 	
-	DEBIT (1, "Debit"),
-	CREDIT (2, "Credit"),
-	CASH (3, "Cash");
+	Male (1, "M"),
+	Female (2, "F");	
 
 	private int code;
 	private String description;
 	
-	private PaymentMethod(int code, String description) {
+	private Gender(int code, String description) {
 		this.code = code;
 		this.description = description;
 	}

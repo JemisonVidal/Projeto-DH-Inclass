@@ -1,4 +1,4 @@
-package br.com.mgoficina.model;
+package br.com.mgoficina.enums;
 
 public enum TypeVehicle {
 	

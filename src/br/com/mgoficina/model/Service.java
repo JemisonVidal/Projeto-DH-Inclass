@@ -1,5 +1,7 @@
 package br.com.mgoficina.model;
 
+import br.com.mgoficina.enums.PaymentMethod;
+
 public class Service {
 	
 	private String serviceName;

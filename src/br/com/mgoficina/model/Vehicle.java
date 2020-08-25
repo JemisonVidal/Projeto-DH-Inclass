@@ -1,5 +1,7 @@
 package br.com.mgoficina.model;
 
+import br.com.mgoficina.enums.TypeVehicle;
+
 public class Vehicle {
 	
 	private String licensePlate;

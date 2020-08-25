@@ -3,11 +3,13 @@ package br.com.mgoficina.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.com.mgoficina.enums.Gender;
+
 public class Client extends Person {
 	
 	private List<Vehicle> vehicles  = new ArrayList<>();
 
-	public Client(Integer id, String name, String cpf, int age, char gender) {
+	public Client(Integer id, String name, String cpf, int age, Gender gender) {
 		super(id, name, cpf, age, gender);		
 	}
 
