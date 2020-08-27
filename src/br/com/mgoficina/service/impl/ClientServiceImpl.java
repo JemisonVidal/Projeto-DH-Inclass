@@ -42,22 +42,15 @@ public class ClientServiceImpl implements IClientService {
 	}
 
 	@Override
-	public Client findClientById(Integer id) {
-
-		for (Client client : this.clients) {
-			if (client.getId().equals(id))
-				return client;
-		}
-		throw new ObjectNotFoundException("Client: " + id);
+	public Client findById(Integer id) {
+		return this.clients.stream().filter(client -> client.getId() == id).findAny()
+				.orElseThrow(() -> new ObjectNotFoundException("Client: " + id));
 	}
 
 	@Override
 	public Client findClientByName(String name) {
-		for (Client client : this.clients) {
-			if (client.getName().toUpperCase().equals(name.toUpperCase()))
-				return client;
-		}
-		throw new ObjectNotFoundException("Client: " + name);
+		return this.clients.stream().filter(client -> client.getName() == name).findAny()
+				.orElseThrow(() -> new ObjectNotFoundException("Client: " + name));
 	}
 
 	@Override
@@ -68,25 +61,21 @@ public class ClientServiceImpl implements IClientService {
 	}
 
 	@Override
-	public Client updateClient(Client client) {
-		int index = this.clients.indexOf(this.findClientById(client.getId()));
+	public Client update(Client client) {
+		if (client == null)
+			throw new DataIntegrityException("contato nao pode ser nulo");
 
+		int index = this.clients.indexOf(this.findById(client.getId()));
 		if (index <= -1)
 			throw new ObjectNotFoundException("Client: " + client.getName());
 
-		this.clients.remove(this.findClientById(client.getId()));
 		this.clients.add(index, client);
-
 		return this.clients.get(index);
 	}
 
 	@Override
-	public boolean deleteClient(Integer id) {
-		for (Client client : this.clients) {
-			if (client.getId().equals(id))
-				return this.clients.remove(client);
-		}
-		throw new ObjectNotFoundException("Client: " + id);
+	public boolean delete(Integer id) {
+		Client client = this.findById(id);
+		return this.clients.remove(client);		
 	}
-
 }
