@@ -1,6 +1,6 @@
 # Prática e Criação do Projeto Usado em Aula
 ## Integrantes
-- Andre Oliveira
+- Andre Oliveira
 - Hillary 
 - Paulo Henrique Araujo
 - Iran
