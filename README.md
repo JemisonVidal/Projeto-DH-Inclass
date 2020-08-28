@@ -1,4 +1,10 @@
 # Prática e Criação do Projeto Usado em Aula
+## Integrantes
+- Andre Oliveira
+- Hillary 
+- Paulo Henrique Araujo
+- Iran
+- Jemison
 
 ## Exercicio 
 Você tem um novo cliente, a oficina - M&G Oficina – que precisa de um novo sistema de gerenciamento de serviços, clientes e funcionários. É necessário que você possa cadastrar funcionários, clientes, veículos, serviço feito para o cliente e por fim que fique salvo esses cadastros.
