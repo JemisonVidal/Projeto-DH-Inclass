@@ -22,12 +22,14 @@ public class ClientServiceImpl implements IClientService {
 			listErrors.add("Age");
 		if (client.getCpf().length() < 12)
 			listErrors.add("Cpf");
+		if (client.getVehicles() == null)
+			listErrors.add("Vehicles");
 		return listErrors;
 	}
 
 	@Override
-	public Client create(Client client) {
-		List<String> listErros = isValid(client);
+	public Client create(Client object) {
+		List<String> listErros = isValid(object);
 
 		if (!listErros.isEmpty()) {
 			String fieldErros = null;
@@ -37,8 +39,8 @@ public class ClientServiceImpl implements IClientService {
 			throw new DataIntegrityException(fieldErros);
 		}
 
-		this.clients.add(client);
-		return client;
+		this.clients.add(object);
+		return object;
 	}
 
 	@Override
@@ -48,7 +50,7 @@ public class ClientServiceImpl implements IClientService {
 	}
 
 	@Override
-	public Client findClientByName(String name) {
+	public Client findByName(String name) {
 		return this.clients.stream().filter(client -> client.getName() == name).findAny()
 				.orElseThrow(() -> new ObjectNotFoundException("Client: " + name));
 	}
@@ -61,21 +63,20 @@ public class ClientServiceImpl implements IClientService {
 	}
 
 	@Override
-	public Client update(Client client) {
-		if (client == null)
-			throw new DataIntegrityException("contato nao pode ser nulo");
+	public Client update(Client object) {
+		if (object == null)
+			throw new DataIntegrityException("Client cannot be null");
 
-		int index = this.clients.indexOf(this.findById(client.getId()));
+		int index = this.clients.indexOf(this.findById(object.getId()));
 		if (index <= -1)
-			throw new ObjectNotFoundException("Client: " + client.getName());
+			throw new ObjectNotFoundException("Client: " + object.getName());
 
-		this.clients.add(index, client);
+		this.clients.add(index, object);
 		return this.clients.get(index);
 	}
 
 	@Override
 	public boolean delete(Integer id) {
-		Client client = this.findById(id);
-		return this.clients.remove(client);		
+		return this.clients.removeIf(client -> client.getId() == id);
 	}
 }

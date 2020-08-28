@@ -1,26 +1,27 @@
 package br.com.mgoficina.model;
 
 import java.security.Provider.Service;
+import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mgoficina.enums.Gender;
+import br.com.mgoficina.enums.Position;
 
 public class Employee extends Person {
 	
-	private String position;
-	private List<Service> services;
+	private Position position;
+	private List<Service> services = new ArrayList<>();
 	
-	public Employee(int id, String name, String cpf, int age, Gender gender, String position, List<Service> services) {
+	public Employee(int id, String name, String cpf, int age, Gender gender, Position position) {
 		super(id, name, cpf, age, gender);
-		this.position = position;
-		this.services = services;
+		this.position = position;		
 	}
 
-	public String getPosition() {
+	public Position getPosition() {
 		return position;
 	}
 
-	public void setPosition(String position) {
+	public void setPosition(Position position) {
 		this.position = position;
 	}
 
@@ -34,7 +35,14 @@ public class Employee extends Person {
 
 	@Override
 	public String toString() {
-		return "Employee [getId()=" + getId() + ", getName()="
-				+ getName() + ", getCpf()=" + getCpf() + ", getAge()=" + getAge() + ", getGender()=" + getGender() + ", position=" + position + ", services=" + services + "]";
+		StringBuilder sb = new StringBuilder();		
+		sb.append("Id:      " + this.getId() + "\n");
+		sb.append("Name:    " + this.getName() + "\n");
+		sb.append("CPF:     " + this.getCpf() + "\n");
+		sb.append("Age:     " + this.getAge() + "\n");
+		sb.append("Gender:  " + this.getGender() + "\n");
+		sb.append("Position:" + this.getPosition() + "\n\n");
+		
+		return sb.toString();
 	}
 }

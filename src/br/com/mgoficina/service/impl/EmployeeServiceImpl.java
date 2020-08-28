@@ -26,8 +26,8 @@ public class EmployeeServiceImpl implements IEmployeeService {
 	}
 
 	@Override
-	public Employee create(Employee employee) {
-		List<String> listErros = isValid(employee);
+	public Employee create(Employee object) {
+		List<String> listErros = isValid(object);
 
 		if (!listErros.isEmpty()) {
 			String fieldErros = null;
@@ -37,27 +37,24 @@ public class EmployeeServiceImpl implements IEmployeeService {
 			throw new DataIntegrityException(fieldErros);
 		}
 
-		this.employees.add(employee);
-		return employee;
+		this.employees.add(object);
+		return object;
 	}
 
 	@Override
-	public Employee findEmployeeById(Integer id) {
-
-		for (Employee employees : this.employees) {
-			if (employees.getId().equals(id))
-				return employees;
-		}
-		throw new ObjectNotFoundException("Employee: " + id);
+	public Employee findById(Integer id) {
+		return this.employees.stream()
+				.filter(employee -> employee.getId() == id)
+				.findAny()
+				.orElseThrow(()-> new ObjectNotFoundException("Employee: "+ id));	
 	}
 
 	@Override
-	public Employee findEmployeeByName(String name) {
-		for (Employee employee : this.employees) {
-			if (employee.getName().toUpperCase().equals(name.toUpperCase()))
-				return employee;
-		}
-		throw new ObjectNotFoundException("Employee: " + name);
+	public Employee findByName(String name) {
+		return this.employees.stream()
+				.filter(employee -> employee.getName() == name)
+				.findAny()
+				.orElseThrow(()-> new ObjectNotFoundException("Employee: "+ name));		
 	}
 
 	@Override
@@ -68,24 +65,20 @@ public class EmployeeServiceImpl implements IEmployeeService {
 	}
 
 	@Override
-	public Employee updateEmployee(Employee employee) {
-		int index = this.employees.indexOf(this.findEmployeeById(employee.getId()));
+	public Employee update(Employee object) {
+		if (object == null)
+			throw new DataIntegrityException("employee cannot be null");
 
+		int index = this.employees.indexOf(this.findById(object.getId()));
 		if (index <= -1)
-			throw new ObjectNotFoundException("Employee: " + employee.getName());
+			throw new ObjectNotFoundException("Employee: " + object.getName());
 
-		this.employees.remove(this.findEmployeeById(employee.getId()));
-		this.employees.add(index, employee);
-
+		this.employees.add(index, object);
 		return this.employees.get(index);
-	}
+	}	
 
 	@Override
-	public boolean deleteEmployee(Integer id) {
-		for (Employee employee : this.employees) {
-			if (employee.getId().equals(id))
-				return this.employees.remove(employee);
-		}
-		throw new ObjectNotFoundException("Employee: " + id);
-	}
+	public boolean delete(Integer id) {
+		return this.employees.removeIf(employee -> employee.getId() == id);
+	}	
 }

@@ -9,10 +9,14 @@ import br.com.mgoficina.model.Client;
 
 public interface IService<T> {
 
-	public T create(Client client) throws DomainException, DataIntegrityException;
-	public T findById(Integer id) throws DomainException, ObjectNotFoundException;	
+	public T create(T object) throws DomainException, DataIntegrityException;
+
+	public T findById(Integer id) throws DomainException, ObjectNotFoundException;
+
 	public List<T> findAll() throws ObjectNotFoundException;
-	public T update(Client client) throws DomainException, DataIntegrityException, ObjectNotFoundException;
+
+	public T update(T oject) throws DomainException, DataIntegrityException, ObjectNotFoundException;
+
 	public boolean delete(Integer id) throws DomainException, ObjectNotFoundException;
-	
+
 }

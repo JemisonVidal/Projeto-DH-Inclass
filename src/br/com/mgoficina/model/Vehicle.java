@@ -3,23 +3,33 @@ package br.com.mgoficina.model;
 import br.com.mgoficina.enums.TypeVehicle;
 
 public class Vehicle {
-	
+
+	private Integer id;
 	private String licensePlate;
 	private String model;
 	private String year;
 	private String chassis;
 	private String color;
 	private TypeVehicle typeVehicle;
-	
-	public Vehicle(String licensePlate, String model, String year, String chassis, String color,
+
+	public Vehicle(Integer id, String licensePlate, String model, String year, String chassis, String color,
 			TypeVehicle typeVehicle) {
 		super();
+		this.id = id;
 		this.licensePlate = licensePlate;
 		this.model = model;
 		this.year = year;
 		this.chassis = chassis;
 		this.color = color;
 		this.typeVehicle = typeVehicle;
+	}
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
 	public String getLicensePlate() {
@@ -74,5 +84,31 @@ public class Vehicle {
 	public String toString() {
 		return "Vehicle [licensePlate=" + licensePlate + ", model=" + model + ", year=" + year + ", chassis=" + chassis
 				+ ", color=" + color + ", typeVehicle=" + typeVehicle.getDescription() + "]";
-	}	
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Vehicle other = (Vehicle) obj;
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
+			return false;
+		return true;
+	}
+	
 }
