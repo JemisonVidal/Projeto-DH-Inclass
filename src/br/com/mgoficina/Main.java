@@ -21,12 +21,7 @@ import br.com.mgoficina.service.impl.VehicleServiceImpl;
 public class Main {
 	
 	public static void main(String[] args) throws ParseException {
-		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-		
-		ClientServiceImpl  clientService = new ClientServiceImpl();
-		EmployeeServiceImpl  employeeService = new EmployeeServiceImpl();
-		OrderServiceImpl  orderServiceService = new OrderServiceImpl();
-		VehicleServiceImpl vehiService = new VehicleServiceImpl(); 
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");			
 		
 		Client client = new Client(1, "João da Silva", "598.712.680-09", 19, Gender.Male);
 		Client client2 = new Client(2, "José ", "598.712.680-09", 19, Gender.Male);
@@ -43,6 +38,11 @@ public class Main {
 		
 		OrderService orderService = new OrderService(1, "Review", sdf.parse("27/08/2020"), null, 1500.0, PaymentMethod.DEBIT, client);
 		OrderService orderService2 = new OrderService(2, "Review2", sdf.parse("27/08/2020"), null, 1500.0, PaymentMethod.CREDIT, client);
+		
+		ClientServiceImpl  clientService = new ClientServiceImpl();
+		EmployeeServiceImpl  employeeService = new EmployeeServiceImpl(employee2);
+		OrderServiceImpl  orderServiceService = new OrderServiceImpl();
+		VehicleServiceImpl vehiService = new VehicleServiceImpl(); 
 				
 		clientService.create(client);		
 		System.out.println(clientService.findById(1));
@@ -69,8 +69,6 @@ public class Main {
 		orderServiceService.finishOrder(1);
 		System.out.println(orderServiceService.findAll());
 		
-		
-		
-		
+		employeeService.update(employee);//exception		
 	}
 }

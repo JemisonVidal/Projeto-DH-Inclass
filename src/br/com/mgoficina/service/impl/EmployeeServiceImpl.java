@@ -4,16 +4,20 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import br.com.mgoficina.enums.Position;
 import br.com.mgoficina.exceptions.DataIntegrityException;
+import br.com.mgoficina.exceptions.DomainException;
 import br.com.mgoficina.exceptions.ObjectNotFoundException;
 import br.com.mgoficina.model.Employee;
 import br.com.mgoficina.service.IEmployeeService;
 
 public class EmployeeServiceImpl implements IEmployeeService {
 
+	private Employee serviceCaller; 
 	private List<Employee> employees = new ArrayList<>();
 
-	public EmployeeServiceImpl() {
+	public EmployeeServiceImpl(Employee serviceCaller) {
+		this.serviceCaller = serviceCaller;
 	}
 
 	private List<String> isValid(Employee employee) {
@@ -68,6 +72,9 @@ public class EmployeeServiceImpl implements IEmployeeService {
 	public Employee update(Employee object) {
 		if (object == null)
 			throw new DataIntegrityException("employee cannot be null");
+		
+		if(this.serviceCaller.getPosition() != Position.MANAGER)
+			throw new DomainException("Only managers can perform this action");
 
 		int index = this.employees.indexOf(this.findById(object.getId()));
 		if (index <= -1)

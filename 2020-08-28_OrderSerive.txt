@@ -1,0 +1,18 @@
+Id:          1
+Service Name:Review
+Client:      Client 
+Id:      1
+Name:    João da Silva
+CPF:     598.712.680-09
+Age:     19
+Gender:  Male
+Vehicles:[Id:   1
+Plate:AAA
+Color:blue
+Model:ford
+Year: 2020
+Type: SEDAN
+
+]
+
+Finished:    true
