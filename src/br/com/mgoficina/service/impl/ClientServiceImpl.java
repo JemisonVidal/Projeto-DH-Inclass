@@ -29,15 +29,15 @@ public class ClientServiceImpl implements IClientService {
 
 	@Override
 	public Client create(Client object) {
-		List<String> listErros = isValid(object);
-
-		if (!listErros.isEmpty()) {
-			String fieldErros = null;
-			for (String field : listErros) {
-				fieldErros += field;
-			}
-			throw new DataIntegrityException(fieldErros);
-		}
+//		List<String> listErros = isValid(object);
+//
+//		if (!listErros.isEmpty()) {
+//			String fieldErros = null;
+//			for (String field : listErros) {
+//				fieldErros += field;
+//			}
+//			throw new DataIntegrityException(fieldErros);
+//		}
 
 		this.clients.add(object);
 		return object;

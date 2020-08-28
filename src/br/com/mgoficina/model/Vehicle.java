@@ -82,8 +82,15 @@ public class Vehicle {
 
 	@Override
 	public String toString() {
-		return "Vehicle [licensePlate=" + licensePlate + ", model=" + model + ", year=" + year + ", chassis=" + chassis
-				+ ", color=" + color + ", typeVehicle=" + typeVehicle.getDescription() + "]";
+		StringBuilder sb = new StringBuilder();		
+		sb.append("Id:   " + this.getId() + "\n");
+		sb.append("Plate:" + this.getLicensePlate() + "\n");
+		sb.append("Color:" + this.getColor() + "\n");
+		sb.append("Model:" + this.getModel() + "\n");
+		sb.append("Year: " + this.getYear() + "\n");
+		sb.append("Type: " + this.getTypeVehicle()+ "\n\n");
+		
+		return sb.toString();
 	}
 
 	@Override
